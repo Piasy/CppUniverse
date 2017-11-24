@@ -4,11 +4,11 @@ base_dir=$(cd "`dirname "0"`" && pwd)
 cpp_out="$base_dir/generated_src/cpp"
 jni_out="$base_dir/generated_src/jni"
 objc_out="$base_dir/generated_src/objc"
-java_out="$base_dir/generated_src/java/com/github/piasy/helloworld"
-java_package="com.github.piasy.helloworld"
-namespace="helloworld"
-objc_prefix="HW"
-djinni_file="djinni/helloworld.djinni"
+java_out="$base_dir/generated_src/java/com/github/piasy/cpp_universe"
+java_package="com.github.piasy.cpp_universe"
+namespace="cpp_universe"
+objc_prefix="PCU"
+djinni_file="$base_dir/djinni/cpp_universe.djinni"
 
 /usr/local/djinni/src/run \
    --java-out $java_out \

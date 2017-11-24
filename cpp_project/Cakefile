@@ -1,8 +1,12 @@
 # Change this to set a different Project file name
-project.name = "HelloWorld"
+project.name = "CppUniverse"
+
+opensslVersion = '1.0.2m'
+boostVersion = '1.65.1'
+cpprestVersion = '2.10.0'
 
 # Replace this with your class prefix for Objective-C files.
-project.class_prefix = "HW"
+# project.class_prefix = "PCU"
 
 # By default Xcake defaults to creating the standard Debug and Release
 # configurations, uncomment these lines to add your own.
@@ -18,7 +22,7 @@ application_for :osx, 10.13 do |target|
 
     #Update these with the details of your app
     target.name = project.name
-    target.all_configurations.each { |c| c.product_bundle_identifier = "com.github.piasy.HelloWorld"}
+    target.all_configurations.each { |c| c.product_bundle_identifier = "com.github.piasy.CppUniverse"}
 
     # Uncomment to target iPhone devices only
     #
@@ -39,6 +43,10 @@ application_for :osx, 10.13 do |target|
 
     target.all_configurations.each do |c|
       c.settings["INFOPLIST_FILE"] = ""
+
+      c.settings["OTHER_LDFLAGS"] = "$(inherited) -lz -lssl -lcrypto -lboost_random-mt -lboost_system-mt -lboost_thread-mt -lboost_filesystem-mt -lboost_chrono-mt -lboost_atomic-mt -lboost_date_time-mt -lboost_regex-mt -lcpprest"
+      c.settings["LIBRARY_SEARCH_PATHS"] = "$(inherited) /usr/local/Cellar/openssl/#{opensslVersion}/lib/ /usr/local/Cellar/boost/#{boostVersion}/lib/ /usr/local/Cellar/cpprestsdk/#{cpprestVersion}/lib/"
+      c.settings["HEADER_SEARCH_PATHS"] = "$(inherited) /usr/local/Cellar/boost/#{boostVersion}/include/ /usr/local/Cellar/openssl/#{opensslVersion}/include/ /usr/local/Cellar/cpprestsdk/#{cpprestVersion}/include/"
     end
 
     # Uncomment to set your own build settings

@@ -1,0 +1,36 @@
+window = record +c {
+    width:      i32;
+    height:     i32;
+    top:        i32;
+    left:       i32;
+    z_index:    i32;
+    uid:        string;
+
+    const match_parent: i32 = 10000;
+}
+
+gui_wrapper = interface +j +o {
+    create_view(window: window);
+    swap_view(alice: window, bob: window);
+    clear_view();
+}
+
+window_manager_callback = interface +j +o {
+    on_window_added(window: window);
+    on_error(error: i32);
+}
+
+window_manager = interface +c {
+    static create(gui_wrapper: gui_wrapper,
+              callback: window_manager_callback): window_manager;
+
+    load_windows();
+
+    get_windows(): list<window>;
+
+    toggle_fullscreen(uid: string);
+
+    update_window(uid: string, width: i32, height :i32, top: i32, left: i32, z_index: i32);
+
+    const err_api_fail: i32 = 1;
+}
