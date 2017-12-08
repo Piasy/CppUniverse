@@ -1,4 +1,4 @@
-window = record +c {
+window = record {
     width:      i32;
     height:     i32;
     top:        i32;
@@ -7,6 +7,12 @@ window = record +c {
     uid:        string;
 
     const match_parent: i32 = 10000;
+}
+
+window_ext = interface +c {
+    static is_fullscreen(window: window): bool;
+
+    static absolute_size(full: i32, size: i32): i32;
 }
 
 gui_wrapper = interface +j +o {

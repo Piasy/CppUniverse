@@ -7,6 +7,7 @@
 #include "window_manager_callback.hpp"
 #include "gui_wrapper.hpp"
 #include "window_manager_impl.hpp"
+#include "window_ext.hpp"
 
 namespace cpp_universe {
 
@@ -62,7 +63,15 @@ void WindowManagerImpl::toggle_fullscreen(const std::string& uid) {
     if (newFc != std::end(windows_) && oldFc != std::end(windows_) &&
         newFc != oldFc) {
         gui_wrapper_->swap_view(*newFc, *oldFc);
-        newFc->swap(*oldFc);
+
+        int width = newFc->width;
+        int height = newFc->height;
+        int top = newFc->top;
+        int left = newFc->left;
+        int z_index = newFc->z_index;
+        update_window(newFc->uid, oldFc->width, oldFc->height, oldFc->top,
+                      oldFc->left, oldFc->z_index);
+        update_window(oldFc->uid, width, height, top, left, z_index);
     }
 }
 
@@ -87,6 +96,6 @@ std::vector<Window>::iterator WindowManagerImpl::window_of(
 
 std::vector<Window>::iterator WindowManagerImpl::current_fc() {
     return std::find_if(windows_.begin(), windows_.end(),
-                        [](Window& w) { return w.is_fullscreen(); });
+                        [](Window& w) { return WindowExt::is_fullscreen(w); });
 }
 }

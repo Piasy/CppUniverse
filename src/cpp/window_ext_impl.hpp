@@ -24,22 +24,13 @@
  */
 //
 
-#include "window.hpp"
+#ifndef window_ext_impl_hpp
+#define window_ext_impl_hpp
+
+#include "window_ext.hpp"
 
 namespace cpp_universe {
-Window::Window(int32_t width, int32_t height, int32_t top, int32_t left,
-               int32_t z_index, std::string uid)
-    : WindowBase::WindowBase(width, height, top, left, z_index, uid) {}
-
-bool Window::is_fullscreen() {
-    return width == MATCH_PARENT && height == MATCH_PARENT;
+class WindowExtImpl : public WindowExt {};
 }
 
-void Window::swap(Window &that) {
-    std::swap(width, that.width);
-    std::swap(height, that.height);
-    std::swap(top, that.top);
-    std::swap(left, that.left);
-    std::swap(z_index, that.z_index);
-}
-}
+#endif /* window_ext_impl_hpp */

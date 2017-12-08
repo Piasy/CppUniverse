@@ -24,20 +24,16 @@
  */
 //
 
-#ifndef window_hpp
-#define window_hpp
 
-#include "window_base.hpp"
+#include "window.hpp"
+#include "window_ext_impl.hpp"
 
 namespace cpp_universe {
-struct Window : public WindowBase {
-    Window(int32_t width, int32_t height, int32_t top, int32_t left,
-           int32_t z_index, std::string uid);
-
-    bool is_fullscreen();
-    
-    void swap(Window& that);
-};
+bool WindowExt::is_fullscreen(const Window &window) {
+    return window.width == Window::MATCH_PARENT && window.height == Window::MATCH_PARENT;
 }
 
-#endif /* window_hpp */
+int32_t WindowExt::absolute_size(int32_t full, int32_t size) {
+    return full * size / Window::MATCH_PARENT;
+}
+}

@@ -1,3 +1,6 @@
 /generated_src/
 
+# GitHub reject too large files
+/libs/
+
 **/*.xcodeproj

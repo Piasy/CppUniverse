@@ -1,17 +1,11 @@
-# For more information about using CMake with Android Studio, read the
-# documentation: https://d.android.com/studio/projects/add-native-code.html
-
-# Sets the minimum version of CMake required to build the native library.
-
 cmake_minimum_required(VERSION 3.4.1)
 
-# Creates and names a library, sets it as either STATIC
-# or SHARED, and provides the relative paths to its source code.
-# You can define multiple libraries, and CMake builds them for you.
-# Gradle automatically packages shared libraries with your APK.
+set(CWD ${CMAKE_CURRENT_LIST_DIR})
 
-# include directories for header files
 include_directories(
+    /Users/piasy/tools/vagrant/ubuntu_xenial64/cpprestsdk/Build_android/build/openssl/armeabi-v7a/include/
+    /Users/piasy/tools/vagrant/ubuntu_xenial64/cpprestsdk/Build_android/build/Boost-for-Android/build/out/armeabi-v7a/include/boost-1_65_1/
+    /Users/piasy/tools/vagrant/ubuntu_xenial64/cpprestsdk/Build_android/build/build.armv7.debug/out/include/
     ../../djinni/support-lib/
     ../../djinni/support-lib/jni/
     ../../generated_src/cpp/
@@ -19,41 +13,34 @@ include_directories(
     ../../src/cpp/
 )
 
-file(GLOB helloworld_sources
+file(GLOB cpp_universe_sources
+    ../../generated_src/cpp/*.cpp
+    ../../src/cpp/*.cpp
     ../../djinni/support-lib/jni/*.cpp
     ../../generated_src/jni/*.cpp
-    ../../src/cpp/*.cpp
+    ./src/main/jni/*.cpp
 )
 
-add_library( # Sets the name of the library.
-             helloworld
-
-             # Sets the library as a shared library.
+add_library(
+             cpp_universe
              SHARED
+             ${cpp_universe_sources}
+           )
 
-             # Provides a relative path to your source file(s).
-             ${helloworld_sources} )
+target_link_libraries(
+                       cpp_universe
 
-# Searches for a specified prebuilt library and stores the path as a
-# variable. Because CMake includes system libraries in the search path by
-# default, you only need to specify the name of the public NDK library
-# you want to add. CMake verifies that the library exists before
-# completing its build.
+                       android
+                       log
 
-find_library( # Sets the name of the path variable.
-              log-lib
-
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
-
-# Specifies libraries CMake should link to your target library. You
-# can link multiple libraries, such as libraries you define in this
-# build script, prebuilt third-party libraries, or system libraries.
-
-target_link_libraries( # Specifies the target library.
-                       helloworld
-
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+                       ${CWD}/../../libs/android/armeabi-v7a/libcpprest.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libboost_thread-clang-mt-1_65_1.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libboost_system-clang-mt-1_65_1.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libboost_random-clang-mt-1_65_1.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libboost_filesystem-clang-mt-1_65_1.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libboost_date_time-clang-mt-1_65_1.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libboost_chrono-clang-mt-1_65_1.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libboost_atomic-clang-mt-1_65_1.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libssl.a
+                       ${CWD}/../../libs/android/armeabi-v7a/libcrypto.a
+                     )

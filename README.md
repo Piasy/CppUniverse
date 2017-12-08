@@ -6,7 +6,9 @@ This demo implement exactly the same feature as [JavaUniverse](https://github.co
 
 ## Dependencies
 
-+ [C++ REST SDK](https://github.com/Microsoft/cpprestsdk)
++ openssl 1.0.2m;
++ boost 1.65.1;
++ [C++ REST SDK](https://github.com/Microsoft/cpprestsdk) 2.10.0;
 + [Djinni](https://github.com/dropbox/djinni)
 + [xcake](https://github.com/jcampbell05/xcake)
 
@@ -40,3 +42,7 @@ WIP...
 + `Arithmetic on a pointer to an incomplete type 'cpp_universe::Window'`: add `#include "window.hpp"` to get the complete type info of `cpp_universe::Window`;
 + Extend djinni record to add utility method which is only used by one language;
 + Djinni record is immutable;
++ Building for Android: openssl need use r15c, boost 1.65.1 need r16; can't use nfs shared folder;
+  + find boost error;
+  + `'BOOST_STDLIB' macro redefined`;
+  + `no matching member function for call to 'expires_from_now'`;
