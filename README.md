@@ -12,6 +12,8 @@ This demo implement exactly the same feature as [JavaUniverse](https://github.co
 + [Djinni](https://github.com/dropbox/djinni)
 + [xcake](https://github.com/jcampbell05/xcake)
 
+Due to GitHub file size limit, [the `libs` directory is ignored](https://github.com/Piasy/CppUniverse/blob/master/.gitignore#L4), you can [download it here](https://github.com/Piasy/CppUniverse/releases/download/dep_libs/libs.zip), and extract it as `libs`.
+
 ## CPP Project
 
 + `./run_djinni.sh`
@@ -51,3 +53,5 @@ WIP...
   - `no matching member function for call to 'expires_from_now'`;
 + Building for iOS:
   - `find_package(Threads REQUIRED)` fail;
+
+All changes on C++ REST SDK [can be found there](https://github.com/Piasy/cpprestsdk/tree/ndk-r16_xc-9b55_ios-11.1_boost-1.65.1_openssl-1.0.2.m).
