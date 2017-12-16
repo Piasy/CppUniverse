@@ -3,7 +3,7 @@ project.name = "CppUniverse"
 
 opensslVersion = '1.0.2m'
 boostVersion = '1.65.1'
-cpprestVersion = '2.10.0'
+cpprestVersion = '2.10.1'
 
 # Replace this with your class prefix for Objective-C files.
 # project.class_prefix = "PCU"

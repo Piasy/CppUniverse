@@ -32,8 +32,9 @@ application_for :ios, 11.1 do |target|
     target.include_files << "../src/cpp/**.*"
     target.include_files << "../generated_src/cpp/**.*"
     target.include_files << "../generated_src/objc/**.*"
-    target.include_files << "../libs/ios/arm64/*.a"
-    target.include_files << "../libs/ios/arm64/boost.framework"
+    target.include_files << "../libs/ios_arm64/cpprestsdk/lib/*.a"
+    target.include_files << "../libs/ios_arm64/openssl/lib/*.a"
+    target.include_files << "../libs/ios_arm64/boost.framework"
 
     # Uncomment this to exclude additional files
     #
@@ -44,9 +45,9 @@ application_for :ios, 11.1 do |target|
     target.all_configurations.each do |c|
       c.settings["INFOPLIST_FILE"] = "Info.plist"
       c.settings["OTHER_LDFLAGS"] = "$(inherited) -lz"
-      c.settings["FRAMEWORK_SEARCH_PATHS"] = "$(inherited) $(PROJECT_DIR)/../libs/ios/arm64"
-      c.settings["LIBRARY_SEARCH_PATHS"] = "$(inherited) $(PROJECT_DIR)/../libs/ios/arm64"
-      c.settings["HEADER_SEARCH_PATHS"] = "$(inherited) /Users/piasy/tools/vagrant/ubuntu_xenial64/cpprestsdk/Release/include/ /Users/piasy/tools/vagrant/ubuntu_xenial64/cpprestsdk/Build_iOS/openssl/include/ $(PROJECT_DIR)/../libs/ios/arm64/boost.framework/Headers/"
+      c.settings["FRAMEWORK_SEARCH_PATHS"] = "$(inherited) $(PROJECT_DIR)/../libs/ios_arm64"
+      c.settings["LIBRARY_SEARCH_PATHS"] = "$(inherited) $(PROJECT_DIR)/../libs/ios_arm64/openssl/lib $(PROJECT_DIR)/../libs/ios_arm64/cpprestsdk/lib"
+      c.settings["HEADER_SEARCH_PATHS"] = "$(inherited) $(PROJECT_DIR)/../libs/ios_arm64/cpprestsdk/include/ $(PROJECT_DIR)/../libs/ios_arm64/openssl/include/ $(PROJECT_DIR)/../libs/ios_arm64/boost.framework/Headers/"
 
       c.settings["ENABLE_BITCODE"] = "NO"
     end

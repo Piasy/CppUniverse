@@ -8,7 +8,7 @@ This demo implement exactly the same feature as [JavaUniverse](https://github.co
 
 + openssl 1.0.2m;
 + boost 1.65.1;
-+ [C++ REST SDK](https://github.com/Microsoft/cpprestsdk) 2.10.0;
++ [C++ REST SDK](https://github.com/Microsoft/cpprestsdk) 2.10.1;
 + [Djinni](https://github.com/dropbox/djinni)
 + [xcake](https://github.com/jcampbell05/xcake)
 
@@ -52,6 +52,6 @@ WIP...
   - `'BOOST_STDLIB' macro redefined`;
   - `no matching member function for call to 'expires_from_now'`;
 + Building for iOS:
-  - `find_package(Threads REQUIRED)` fail;
+  - `find_package(Threads REQUIRED)` fail, [solution](https://gitlab.kitware.com/cmake/cmake/issues/16695);
 
 All changes on C++ REST SDK [can be found there](https://github.com/Piasy/cpprestsdk/tree/ndk-r16_xc-9b55_ios-11.1_boost-1.65.1_openssl-1.0.2.m).
