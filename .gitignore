@@ -2,5 +2,6 @@
 
 # GitHub reject too large files
 /libs/
+/libs.zip
 
 **/*.xcodeproj

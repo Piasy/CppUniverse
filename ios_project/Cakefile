@@ -1,8 +1,8 @@
 # Change this to set a different Project file name
-project.name = "HelloWorld"
+project.name = "CppUniverse"
 
 # Replace this with your class prefix for Objective-C files.
-project.class_prefix = "HW"
+project.class_prefix = "PCU"
 
 # By default Xcake defaults to creating the standard Debug and Release
 # configurations, uncomment these lines to add your own.
@@ -18,7 +18,7 @@ application_for :ios, 11.1 do |target|
 
     #Update these with the details of your app
     target.name = project.name
-    target.all_configurations.each { |c| c.product_bundle_identifier = "com.github.piasy.HelloWorld"}
+    target.all_configurations.each { |c| c.product_bundle_identifier = "com.github.piasy.CppUniverse"}
 
     # Uncomment to target iPhone devices only
     #
@@ -32,6 +32,8 @@ application_for :ios, 11.1 do |target|
     target.include_files << "../src/cpp/**.*"
     target.include_files << "../generated_src/cpp/**.*"
     target.include_files << "../generated_src/objc/**.*"
+    target.include_files << "../libs/ios/arm64/*.a"
+    target.include_files << "../libs/ios/arm64/boost.framework"
 
     # Uncomment this to exclude additional files
     #
@@ -41,6 +43,12 @@ application_for :ios, 11.1 do |target|
 
     target.all_configurations.each do |c|
       c.settings["INFOPLIST_FILE"] = "Info.plist"
+      c.settings["OTHER_LDFLAGS"] = "$(inherited) -lz"
+      c.settings["FRAMEWORK_SEARCH_PATHS"] = "$(inherited) $(PROJECT_DIR)/../libs/ios/arm64"
+      c.settings["LIBRARY_SEARCH_PATHS"] = "$(inherited) $(PROJECT_DIR)/../libs/ios/arm64"
+      c.settings["HEADER_SEARCH_PATHS"] = "$(inherited) /Users/piasy/tools/vagrant/ubuntu_xenial64/cpprestsdk/Release/include/ /Users/piasy/tools/vagrant/ubuntu_xenial64/cpprestsdk/Build_iOS/openssl/include/ $(PROJECT_DIR)/../libs/ios/arm64/boost.framework/Headers/"
+
+      c.settings["ENABLE_BITCODE"] = "NO"
     end
 
     # Uncomment to set your own build settings

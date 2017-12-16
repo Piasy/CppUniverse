@@ -10,6 +10,11 @@
 
 @interface ViewController : UIViewController
 
+// MARK: Properties
+@property(weak, nonatomic) IBOutlet UIView* container;
+
+// MARK: Actions
+- (IBAction)onShuffle:(UIButton*)sender;
 
 @end
 
